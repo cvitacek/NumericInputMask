@@ -37,12 +37,17 @@ export class NumericInputMask implements ComponentFramework.StandardControl<IInp
             const maskTemplate = context.parameters.maskPattern?.raw || '(___) ___-____';
             this._maskInput.setAttribute('placeholder', maskTemplate);
 
+            // Count underscores to determine max digits allowed
+            const maxDigits = (maskTemplate.match(/_/g) || []).length;
+
             this._currentValue = context.parameters.maskField.raw || "";
             this._maskInput.value = this.applyMask(this._currentValue.replace(/\D/g, ''), maskTemplate);
 
             container.appendChild(this._maskInput);
             this._maskInput.addEventListener("input", (event => {
-                const digits = this._maskInput.value.replace(/\D/g, '');
+                let digits = this._maskInput.value.replace(/\D/g, '');
+                // Limit to maxDigits
+                digits = digits.substring(0, maxDigits);
                 const masked = this.applyMask(digits, maskTemplate);
                 this._maskInput.value = masked;
                 this._currentValue = masked;
