@@ -1,10 +1,10 @@
 # NumericInputMask PCF Control
 
-A PowerApps PCF control that displays a single text field masked with a configurable pattern (e.g., phone numbers). The mask pattern is fully configurable via the `maskPattern` property.
+A PowerApps PCF control that displays a single text field masked with a configurable numeric pattern (e.g., phone numbers, SSN, others). The mask pattern is fully configurable via the `maskPattern` property.
 
 ## Features
 
-- Configurable mask template (e.g., `(___) ___-____`)
+- Configurable mask template (e.g., `(___) ___-____` )
 - Always displays the mask template, updating as the user types
 - Supports any mask pattern using underscores (`_`) as digit placeholders
 
@@ -14,7 +14,9 @@ A PowerApps PCF control that displays a single text field masked with a configur
 2. **Bind the `maskField` property** to the text field you want to mask.
 3. **Set the `maskPattern` property** to your desired template, e.g.:
    - US Phone: `(___) ___-____`
-   - Custom: `____-____`
+   - US Phone: `+1 (___) ___-____`
+   - SSN: `___-__-____`
+   - CUSTOM: `AA-__-____-2005`
 
 ## Properties
 
