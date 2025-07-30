@@ -5,6 +5,7 @@ export class NumericInputMask implements ComponentFramework.StandardControl<IInp
     private _notifyOutputChanged: () => void;
 
     private _maskInput: HTMLInputElement;
+    private _maskSpan: HTMLSpanElement;
     private _currentValue = "";
 
     /**
@@ -30,8 +31,13 @@ export class NumericInputMask implements ComponentFramework.StandardControl<IInp
     ): void {
         try {
             this._notifyOutputChanged = notifyOutputChanged;
+
+            this._maskSpan = document.createElement('span');
+            this._maskSpan.setAttribute('class', 'fui-Input r1jtohuq pa-input-component-root ___sv0lv60 f16xq7d1 ftmjh5b f17blpuu f1tpwn32 fsrcdbj fghlq4f f1gn591s fb073pr fjscplz fly5x3f f1l02sjl f1couhl3');
             this._maskInput = document.createElement('input');
-            this._maskInput.setAttribute('type', 'text');
+            this._maskInput.setAttribute('type', 'tel');
+            this._maskInput.setAttribute('class', 'fui-Input__input rvp2gzh ___9xd2bv0 f1l02sjl f1cmbuwj fly5x3f f1pivz5x');
+            this._maskInput.setAttribute('data-pa-landmark-active-element', 'true');
 
             // Use configurable mask pattern property
             const maskTemplate = context.parameters.maskPattern?.raw || '(___) ___-____';
@@ -43,7 +49,10 @@ export class NumericInputMask implements ComponentFramework.StandardControl<IInp
             this._currentValue = context.parameters.maskField.raw || "";
             this._maskInput.value = this.applyMask(this._currentValue.replace(/\D/g, ''), maskTemplate);
 
-            container.appendChild(this._maskInput);
+            // Render input inside span, then append span to container
+            this._maskSpan.appendChild(this._maskInput);
+            container.appendChild(this._maskSpan);
+
             this._maskInput.addEventListener("input", (event => {
                 let digits = this._maskInput.value.replace(/\D/g, '');
                 // Limit to maxDigits

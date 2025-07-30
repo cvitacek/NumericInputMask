@@ -9,7 +9,7 @@
     <Descriptions>
       <Description description="A PowerApps PCF control that displays single text field data masked with Regular Expressions." languagecode="1033" />
     </Descriptions>
-    <Version>1.1.2.0</Version>
+    <Version>1.1.4.0</Version>
     <!-- Solution Package Type: Unmanaged(0)/Managed(1)/Both(2)-->
     <Managed>2</Managed>
     <Publisher>
